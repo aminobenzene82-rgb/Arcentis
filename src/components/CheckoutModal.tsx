@@ -37,10 +37,14 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderSuccess, 
       setIsSuccess(false);
       return;
     }
+    document.body.style.overflow = "hidden";
     const interval = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
-    return () => clearInterval(interval);
+    return () => {
+      document.body.style.overflow = "";
+      clearInterval(interval);
+    };
   }, [isOpen]);
 
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);

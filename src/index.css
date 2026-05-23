@@ -17,8 +17,14 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
   body {
     @apply bg-luxury-cream text-[#333333] font-sans antialiased;
+    overflow-x: hidden;
   }
   
   h1, h2, h3, h4 {

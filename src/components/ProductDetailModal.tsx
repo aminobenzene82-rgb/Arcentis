@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ShoppingCart, ShieldCheck, Clock, Truck, Star } from "lucide-react";
 import { Watch } from "../constants";
@@ -10,6 +11,17 @@ interface ProductDetailModalProps {
 }
 
 export default function ProductDetailModal({ isOpen, onClose, product, onOrderNow }: ProductDetailModalProps) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!product) return null;
 
   const pros = [
@@ -35,7 +47,7 @@ export default function ProductDetailModal({ isOpen, onClose, product, onOrderNo
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-4xl bg-white shadow-2xl overflow-y-auto md:overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[90vh]"
+            className="relative w-full max-w-4xl bg-white shadow-2xl overflow-y-auto md:overflow-hidden flex flex-col md:flex-row max-h-[92vh] md:max-h-[90vh]"
           >
             {/* Close Button */}
             <button 
@@ -46,7 +58,7 @@ export default function ProductDetailModal({ isOpen, onClose, product, onOrderNo
             </button>
 
             {/* Left: Image */}
-            <div className="w-full md:w-1/2 bg-luxury-beige flex items-center justify-center p-6 md:p-8">
+            <div className="w-full md:w-1/2 bg-luxury-beige flex items-center justify-center p-6 md:p-8 shrink-0">
               <motion.img 
                 layoutId={`product-image-${product.id}`}
                 src={product.image} 
@@ -56,7 +68,7 @@ export default function ProductDetailModal({ isOpen, onClose, product, onOrderNo
             </div>
 
             {/* Right: Details */}
-            <div className="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto max-h-[80vh] md:max-h-none">
+            <div className="w-full md:w-1/2 p-8 md:p-12 overflow-visible md:overflow-y-auto md:max-h-[90vh]">
               <div className="mb-6">
                 <span className="tracked-label text-luxury-gold mb-2 block">{product.category}</span>
                 <h2 className="text-3xl font-serif text-luxury-black mb-2">{product.name}</h2>

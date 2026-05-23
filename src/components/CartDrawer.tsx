@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import { CartItem } from "../App";
@@ -19,6 +20,17 @@ export default function CartDrawer({
   onRemove,
   onCheckout,
 }: CartDrawerProps) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
