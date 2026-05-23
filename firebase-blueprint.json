@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details",
+      "type": "object",
+      "properties": {
+        "uniqueOrderNumber": { "type": "string" },
+        "customerName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "senderNumber": { "type": "string" },
+        "items": { "type": "array" },
+        "totalAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "shipping", "delivered"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uniqueOrderNumber", "customerName", "phone", "address", "items", "totalAmount", "status", "createdAt"]
+    },
+    "CartActivity": {
+      "title": "CartActivity",
+      "description": "Tracking user cart activity",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "items": { "type": "array" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sessionId", "items", "updatedAt"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin user configuration",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" }
+      },
+      "required": ["email"]
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Store all customer orders"
+    },
+    "/cartActivities/{activityId}": {
+      "schema": "CartActivity",
+      "description": "Track cart items for live monitoring"
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Authorized admin users"
+    }
+  }
+}

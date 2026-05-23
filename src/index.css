@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-bengali: "Hind Siliguri", sans-serif;
+  
+  --color-luxury-cream: #FDFBF7;
+  --color-luxury-beige: #F5F1E9;
+  --color-luxury-gold: #C5A059;
+  --color-luxury-gold-bright: #D4AF37;
+  --color-luxury-silver: #E5E1DA;
+  --color-luxury-accent: #E5D5B7;
+  --color-luxury-black: #1A1A1A;
+  --color-luxury-gray: #666666;
+}
+
+@layer base {
+  body {
+    @apply bg-luxury-cream text-[#333333] font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-serif font-light;
+  }
+}
+
+@layer components {
+  .tracked-label {
+    @apply font-sans text-[10px] uppercase tracking-[0.3em] text-luxury-gray;
+  }
+  
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-luxury-silver/50;
+  }
+  
+  .luxury-button {
+    @apply px-10 py-4 font-sans text-[10px] tracking-[0.2em] uppercase transition-all duration-300;
+  }
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #C5A059 0%, #FDFBF7 50%, #C5A059 100%);
+}
+
+.shadow-luxury {
+  box-shadow: 0 10px 40px -15px rgba(197, 160, 89, 0.15);
+}

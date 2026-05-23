@@ -1,0 +1,8 @@
+{
+  "name": "ARCENTIS",
+  "description": "Premium luxury watch ecommerce for Bangladesh\u0027s elite customers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
