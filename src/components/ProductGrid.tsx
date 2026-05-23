@@ -121,6 +121,7 @@ export default function ProductGrid({ onProductClick, onAddToCart }: ProductGrid
                   <img 
                     src={watch.image} 
                     alt={watch.name} 
+                    loading="lazy"
                     className="w-full h-full object-contain transition-transform duration-1000 ease-out group-hover:scale-105"
                   />
                   

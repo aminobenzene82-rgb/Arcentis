@@ -35,7 +35,7 @@ export default function ProductDetailModal({ isOpen, onClose, product, onOrderNo
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-4xl bg-white shadow-2xl overflow-hidden flex flex-col md:flex-row"
+            className="relative w-full max-w-4xl bg-white shadow-2xl overflow-y-auto md:overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[90vh]"
           >
             {/* Close Button */}
             <button 

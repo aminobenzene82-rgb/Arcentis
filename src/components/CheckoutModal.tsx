@@ -170,7 +170,7 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderSuccess, 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className={`relative w-full ${step === 'details' ? 'max-w-4xl' : 'max-w-3xl'} bg-white border border-luxury-silver shadow-2xl overflow-hidden my-auto transition-all duration-500 pointer-events-auto`}
+            className={`relative w-full ${step === 'details' ? 'max-w-4xl' : 'max-w-3xl'} bg-white border border-luxury-silver shadow-2xl max-h-[90vh] md:max-h-none overflow-y-auto md:overflow-visible my-auto transition-all duration-500 pointer-events-auto`}
           >
             <AnimatePresence mode="wait">
               <motion.div 
@@ -287,6 +287,48 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderSuccess, 
                       ) : (
                         <motion.div key="form-content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full">
                           <h3 className="text-sm font-bold text-luxury-black uppercase tracking-[0.3em] mb-8">Reservation Details</h3>
+                          
+                          {/* Mobile-only compact order list accordion */}
+                          <div className="md:hidden mb-6 bg-slate-50 p-4 border border-luxury-silver/20">
+                            <details className="group">
+                              <summary className="flex items-center justify-between cursor-pointer list-none text-[10px] font-bold text-luxury-black uppercase tracking-wider select-none">
+                                <span className="flex items-center gap-2">
+                                  <span>Order Summary ({items.length})</span>
+                                </span>
+                                <span className="text-luxury-gold text-[10px] tracking-widest font-normal uppercase group-open:hidden">Show details</span>
+                                <span className="text-luxury-gold text-[10px] tracking-widest font-normal uppercase hidden group-open:inline">Hide details</span>
+                              </summary>
+                              <div className="mt-4 space-y-3 max-h-48 overflow-y-auto pt-2 border-t border-slate-100">
+                                {items.map((item) => (
+                                  <div key={item.id} className="flex gap-3 items-center bg-white p-2 border border-luxury-silver/10">
+                                    <img src={item.image} alt={item.name} className="w-10 h-10 object-contain shrink-0" />
+                                    <div className="flex-1 min-w-0">
+                                      <p className="text-[9px] font-bold text-luxury-black truncate">{item.name}</p>
+                                      <p className="text-[8px] text-luxury-gray">Qty: {item.quantity}</p>
+                                    </div>
+                                    <span className="text-[10px] font-medium text-luxury-black">৳{(item.price * item.quantity).toLocaleString()}</span>
+                                  </div>
+                                ))}
+                                <div className="border-t border-dashed border-slate-200 pt-3 flex flex-col gap-1.5 text-[10px]">
+                                  <div className="flex justify-between text-luxury-gray">
+                                    <span>Subtotal</span>
+                                    <span>৳{subtotal.toLocaleString()}</span>
+                                  </div>
+                                  {discount > 0 && (
+                                    <div className="flex justify-between text-luxury-gold font-medium">
+                                      <span>Adv. Payment Discount (10%)</span>
+                                      <span>-৳{discount.toLocaleString()}</span>
+                                    </div>
+                                  )}
+                                  <div className="flex justify-between text-luxury-gray">
+                                    <span>Shipping</span>
+                                    <span>{deliveryCharge === 0 ? "Free" : `৳${deliveryCharge}`}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </details>
+                          </div>
+
                           <form className="space-y-5" onSubmit={handleSubmit}>
                             <div>
                               <label className="tracked-label !text-[8px] mb-2 block">Name</label>
