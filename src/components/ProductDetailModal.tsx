@@ -46,12 +46,12 @@ export default function ProductDetailModal({ isOpen, onClose, product, onOrderNo
             </button>
 
             {/* Left: Image */}
-            <div className="w-full md:w-1/2 bg-luxury-beige flex items-center justify-center p-8">
+            <div className="w-full md:w-1/2 bg-luxury-beige flex items-center justify-center p-6 md:p-8">
               <motion.img 
                 layoutId={`product-image-${product.id}`}
                 src={product.image} 
                 alt={product.name}
-                className="max-h-[400px] w-auto object-contain drop-shadow-2xl"
+                className="max-h-[220px] sm:max-h-[300px] md:max-h-[400px] w-auto object-contain drop-shadow-2xl"
               />
             </div>
 

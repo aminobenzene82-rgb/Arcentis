@@ -104,7 +104,7 @@ export default function ProductGrid({ onProductClick, onAddToCart }: ProductGrid
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="group cursor-pointer"
+              className="group cursor-pointer max-w-[290px] sm:max-w-none w-full mx-auto"
             >
               <div className="bg-white border border-luxury-silver/30 p-2 flex flex-col items-center group transition-all duration-700 hover:border-luxury-gold/40 hover:shadow-[0_20px_50px_-15px_rgba(197,160,89,0.15)]">
                 <div className="relative w-full aspect-[4/5] bg-luxury-cream/30 overflow-hidden flex items-center justify-center p-8 transition-colors duration-700 group-hover:bg-luxury-cream/60">
